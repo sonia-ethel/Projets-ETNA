@@ -1,0 +1,112 @@
+/* =============================================
+   VARIABLES GLOBALES — à harmoniser avec l'équipe
+   ============================================= */
+:root {
+  --bg-main:       #0f1117;
+  --bg-surface:    #1a1d27;
+  --bg-elevated:   #222536;
+  --border:        #2e3248;
+  --text:          #e8eaf0;
+  --text-muted:    #7b82a0;
+  --primary:       #6c8aff;
+  --primary-dim:   #2a3460;
+  --accent:        #ff6b6b;
+
+  --sidebar-width: 240px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background: var(--bg-main);
+  color: var(--text);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =============================================
+   LAYOUT : SIDEBAR + CONTENU
+   ============================================= */
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
+  /* La navbar de ton collègue viendra ici */
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+}
+
+.sidebar-placeholder {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 2rem;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+/* FOOTER */
+footer {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.footer-logo {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: 0.05em;
+}
+
+.footer-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-link {
+  color: var(--text-muted);
+  transition: color 0.2s, transform 0.15s;
+  display: flex;
+  align-items: center;
+}
+
+.footer-link:hover { color: var(--primary); transform: translateY(-2px); }
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}

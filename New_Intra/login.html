@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETNA — Connexion</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080B14;--bg2:#0D1120;--bg3:#111828;--surface:#141B2D;--surface2:#1A2440;
+  --border:rgba(108,156,255,0.12);--border2:rgba(108,156,255,0.28);
+  --indigo:#6C9CFF;--indigo-d:#3A5ECC;--indigo-g:rgba(108,156,255,0.15);
+  --violet:#A78BFF;--violet-d:#7C3AED;--cyan:#22D4FD;--cyan-d:#0891B2;
+  --emerald:#10E5A5;--emerald-d:#059669;--amber:#FFB830;--amber-d:#D97706;
+  --rose:#FF5F87;--rose-d:#DC2626;--text:#E8EEF8;--muted:#6B7A99;--muted2:#4A5470;
+  --font-h:'Syne',sans-serif;--font-b:'Space Grotesk',sans-serif;--font-m:'JetBrains Mono',monospace;
+  --sw:68px;--glow-indigo:0 0 28px rgba(108,156,255,0.35);--glow-violet:0 0 28px rgba(167,139,255,0.35);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:auto}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+#cursor{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--indigo);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;box-shadow:0 0 16px var(--indigo);transition:width .12s,height .12s}
+#cursor-ring{position:fixed;width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(108,156,255,.45);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .1s cubic-bezier(.34,1.56,.64,1),height .1s}
+.main-bg{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 40% at 80% 0%,rgba(108,156,255,.06) 0%,transparent 60%),radial-gradient(ellipse 40% 50% at 0% 80%,rgba(167,139,255,.04) 0%,transparent 60%)}
+.logo{position:absolute;top:32px;left:50%;transform:translateX(-50%);width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,var(--indigo) 0%,var(--violet) 100%);display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:14px;font-weight:800;color:#fff;letter-spacing:.05em;box-shadow:0 0 28px rgba(108,156,255,.5)}
+.login-container{background:var(--surface2);border:1px solid var(--border2);border-radius:28px;padding:48px 40px;max-width:420px;width:90%;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.6);backdrop-filter:blur(20px);animation:riseIn .6s cubic-bezier(.22,1,.36,1) both}
+@keyframes riseIn{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+.login-title{font-family:var(--font-h);font-size:32px;font-weight:800;background:linear-gradient(120deg,var(--indigo),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px;text-align:center}
+.login-subtitle{font-size:14px;color:var(--muted);text-align:center;margin-bottom:36px;line-height:1.5}
+.form-group{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.form-label{font-family:var(--font-m);font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.form-input{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px 20px;font-size:16px;color:var(--text);outline:none;font-family:var(--font-b);transition:all .25s}
+.form-input:focus{border-color:var(--indigo);box-shadow:0 0 0 3px rgba(108,156,255,.15)}
+.form-input::placeholder{color:var(--muted2)}
+.forgot{font-size:13px;color:var(--muted);text-align:center;display:block;margin:12px 0;font-family:var(--font-m)}
+.login-btn{width:100%;background:linear-gradient(135deg,var(--indigo),var(--violet));color:#fff;border:none;border-radius:14px;padding:18px;font-size:16px;font-weight:700;cursor:pointer;font-family:var(--font-h);letter-spacing:.02em;transition:all .3s;position:relative;overflow:hidden}
+.login-btn:hover{transform:translateY(-2px);box-shadow:var(--glow-indigo)}
+.login-btn:active{transform:translateY(0)}
+.login-btn:disabled{background:var(--muted);cursor:not-allowed;transform:none;box-shadow:none}
+.demo-hint{position:absolute;bottom:24px;right:24px;font-size:11px;color:var(--muted2);font-family:var(--font-m)}
+@media(max-width:480px){.login-container{padding:36px 28px}.login-title{font-size:26px}}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div class="main-bg"></div>
+
+
+<main class="login-container">
+  <h1 class="login-title">Bienvenue</h1>
+  <p class="login-subtitle">Connectez-vous à votre espace ETNA pour accéder à vos modules et ressources.</p>
+  
+  <form id="loginForm">
+    <div class="form-group">
+      <label class="form-label" for="username">Identifiant</label>
+      <input type="text" id="username" class="form-input" placeholder="ilham.l" autocomplete="username" required>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label" for="password">Mot de passe</label>
+      <input type="password" id="password" class="form-input" placeholder="••••••••" autocomplete="current-password" required>
+    </div>
+    
+    <a href="#" class="forgot">Mot de passe oublié ?</a>
+    
+    <button type="submit" class="login-btn" id="loginBtn">
+      <span id="loginText">Connexion</span>
+      <span id="loginSpinner" style="display:none">⏳</span>
+    </button>
+  </form>
+  
+
+</main>
+
+
+<script>
+/* ===== CURSOR ===== */
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+const lerp=(a,b,t)=>a+(b-a)*t;
+(function lp(){rx=lerp(rx,mx,.22);ry=lerp(ry,my,.22);ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lp);})();
+
+// Hover effects
+['.form-input','.login-btn'].forEach(sel=>{
+  document.querySelectorAll(sel).forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.style.width='14px';cur.style.height='14px';ring.style.width='48px';ring.style.height='48px';});
+    el.addEventListener('mouseleave',()=>{cur.style.width='8px';cur.style.height='8px';ring.style.width='32px';ring.style.height='32px';});
+  });
+});
+
+/* ===== LOGIN ===== */
+const form=document.getElementById('loginForm');
+const btn=document.getElementById('loginBtn');
+const text=document.getElementById('loginText');
+const spinner=document.getElementById('loginSpinner');
+
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const user=document.getElementById('username').value.trim();
+  const pass=document.getElementById('password').value;
+  
+  if(!user||!pass){
+    alert('Veuillez remplir tous les champs.');
+    return;
+  }
+  
+  // Demo: n'importe quel login/mdp OK
+  if(user && pass){
+    btn.disabled=true;
+    text.style.display='none';
+    spinner.style.display='inline';
+    
+    // Simulate network
+    await new Promise(r=>setTimeout(r,800));
+    
+    // Set login state
+    localStorage.setItem('etna_logged','true');
+    localStorage.setItem('etna_user',user);
+    
+    // Redirect to app
+    window.location.href='Projet-Intra.html#logged';
+  }else{
+    // Shake animation
+    form.style.animation='shake .5s';
+    setTimeout(()=>form.style.animation='',300);
+    alert('Identifiants incorrects.\n👤 Démo: ilham.l / etna-alternance.fr');
+  }
+});
+
+// Shake keyframe
+const style=document.createElement('style');
+style.textContent='@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}';
+document.head.appendChild(style);
+
+// Prefill demo (remove in prod)
+
+</script>
+

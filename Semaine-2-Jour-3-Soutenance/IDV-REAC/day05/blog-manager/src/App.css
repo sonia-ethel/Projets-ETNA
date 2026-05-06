@@ -1,0 +1,55 @@
+
+.maPage {
+  justify-content: left;
+  text-align: left;
+  padding: 15px;
+}
+
+.form-article {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 0 auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.header {
+  text-align: center;
+  padding: 15px;
+  color: white;
+  margin-top: auto;
+  margin-top: 15px;
+  padding-top: 0;
+}
+.footer {
+  text-align: center;
+  padding: 15px;
+  height: 20px;
+  background-color: #D7CCC8;
+  color: black;
+  margin-top: auto;
+}
+.nav {
+  display: flex;
+  gap: 50px;
+  padding: 20px;
+}
+
+.header nav a {
+  margin-right: 50px;
+}

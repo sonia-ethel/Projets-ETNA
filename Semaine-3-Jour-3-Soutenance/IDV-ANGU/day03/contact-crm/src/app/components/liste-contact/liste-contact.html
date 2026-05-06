@@ -1,0 +1,12 @@
+<div class="list-container">
+  <h3>Liste des contacts</h3>
+  <div class="contact-card" *ngFor="let contact of contacts">
+    <div class="contact-info">
+      <p><strong>{{ contact.firstName }} {{ contact.lastName }}</strong></p>
+      <p>{{ contact.email }}</p>
+      <p>{{ contact.phone }}</p>
+    </div>
+    <button (click)="supprimer(contact.id)">Supprimer</button>
+  </div>
+  <p class="empty-message" *ngIf="contacts.length === 0">Aucun contact pour le moment.</p>
+</div>
